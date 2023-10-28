@@ -1,0 +1,23 @@
+management:
+  endpoints:
+    web.exposure:
+      include: health,info,env,mappings,metrics,beans,prometheus
+#chto pokazivat
+  endpoint:
+    health:
+      show-details=always
+#health pokazivat v detalyah
+
+
+  server:
+    port: 8088
+#port dlya actuator
+server:
+  port: 8089
+#port dlya servisa
+timer: 200
+#vremya zaderzhki
+logging:
+  level:
+    root: warn
+    com.springexamples: DEBUG
