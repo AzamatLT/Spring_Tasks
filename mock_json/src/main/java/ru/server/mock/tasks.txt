@@ -39,3 +39,70 @@
 //-- Задача 8 Сертификаты
 //			8.1 Подключить сертификаты (https)						-
 //			8.2 Использовать https без сертификатов					-
+
+
+
+	// @RestController сообщает, что этот код описывает конечную точку, которая должна быть доступна через Web
+	// @GetMapping(“/hello”) и @PostMapping сообщает Spring использовать наш метод hello() для ответа на запросы,
+	// которые отправляются по умолчанию на http://localhost:8080/hello адрес
+	// его можно изменить установив server.port в качестве системного свойства,
+	// используя параметр командной строки для jvm -Dserver.port=8090
+	// еще можно организовать, что бы порт передовался командой вызова приложения и брать его из файла// не реализованно
+	// или добавив application.properties в /src/main/resources/
+	// метод hello() предназначен для приема строкового параметра с именем name, name по задаче 1 не нужен!
+	// @RequestParam сообщает Spring ожидать значение name в запросе,
+	// но если его там нет, по умолчанию будет использоваться слово “World”.
+	// если убрать @RequestParam в POST будет не важно есть body или нет
+	// code = HttpStatus.OK сообщает Spring какой статус ответа
+
+	// Самый простой ответ да на корень. любой метод.
+	@RequestMapping("/**")
+	public String getAny() {
+		myTimer(timer);
+
+		return ("");
+	}
+
+		// GET с id в endpoint
+    	@GetMapping("/hello/{id}")
+    	public String getBodyId(@PathVariable String id) {
+    		myTimer(timer);
+    		return String.format("You request GET - %s!", id);
+    	}
+
+    	// GET с параметром и header
+    	@GetMapping("/hello")
+    	public String getBody(@RequestParam(value =  "name", defaultValue = "Ivan") String name,
+    						  @RequestHeader(value =  "trace", defaultValue = "111111") String trace,
+    						  HttpServletResponse response) {
+    		myTimer(timer);
+    		response.addHeader("trace", trace);
+    		return String.format("You request GET - %s! Trace from header - %s", name, trace);
+    	}
+
+    	// POST JSON
+    	@PostMapping("/hello/json")
+    	public String postBody(@RequestParam(value =  "name", defaultValue = "Ivan") String name,
+    						   @RequestHeader(value =  "trace", defaultValue = "111111") String trace,
+    						   HttpServletResponse response) {
+
+    		myTimer(timer);
+    		return String.format("You request POST - " + name + " ! Timer = %d", timer);
+    	}
+
+    		// POST XML
+        	@PostMapping(value = "/hello/xml")
+        	public String postBodyXML(@RequestParam(value =  "namexml", defaultValue = "Ivan") String namexml) {
+        		myTimer(timer);
+        		return String.format("You request POST - " + namexml + " ! Timer = %d", timer);
+        	}
+
+
+        	//Таймер для времени отклика
+        	private void myTimer(int timer) {
+        		try {
+        			Thread.sleep(timer);
+        		} catch (InterruptedException e) {
+        			e.printStackTrace();
+        		}
+        	}
