@@ -1,44 +1,49 @@
 package ru.server.mock.users_json;
 
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.*;
 
+import ru.server.mock.myTimer.MyTimer;
 
 
+@Slf4j
 @RestController
-@ConfigurationProperties(prefix = "timer")
-public class UserController {
+@RequestMapping("/api/v1")
+public class UserControllerV1 {
 
-    private final int timer;
+    private final int timerMin;
+    private final int timerMax;
 
 
     @Autowired
-    public UserController(@Value("${timer}") int timer) {
-        this.timer = timer;
-        System.out.println(" timer = " + timer);
+    public UserControllerV1(@Value("${timerUser.min}") int timerMin, @Value("${timerUser.max}") int timerMax) {
+        this.timerMin = timerMin;
+        this.timerMax = timerMax;
+        log.warn(" timerUserMin = " + timerMin + "  timerUserMax = " + timerMax);
     }
 
     @PostMapping("/users")
     @ResponseBody
-    public String printUser(@RequestBody User user,
-                            @RequestHeader(value =  "trace", defaultValue = "111111") String trace,
-                            HttpServletResponse response) {
-        myTimer(timer);
-        System.out.println("Print User Object " + user);
-
+    public String publishtUser(@RequestBody User user,
+                               @RequestHeader(value =  "trace", defaultValue = "111111") String trace,
+                               HttpServletResponse response) {
+        MyTimer.myTimer(timerMin, timerMax);
+        log.warn("Print User Object " + user);
+// Парсим JSON
         response.addHeader("trace", trace);
         response.addHeader("Your name", user.toParseName(user));
         response.addHeader("Your location", user.toParseLocation(user));
         response.addHeader("Your age", String.valueOf(user.toParseAge(user)));
         response.addHeader("Your message", user.toString()); //Передаём header сформированный в User.toString() из request
+// Отправляем самостоятельно собранный JSON
         return "{\n" +
-                "\t\"name\": \""+user.toParseName(user)+"\",\n" +
-                "\t\"city\": \""+user.toParseLocation(user)+"\",\n" +
-                "\t\"age\": "+String.valueOf(user.toParseAge(user))+" \n" +
-                "}"; //Передаём ответ/body сформированное тут же  из request
+                "\t\"name\": \"" + user.toParseName(user)+"\",\n" +
+                "\t\"city\": \"" + user.toParseLocation(user)+"\",\n" +
+                "\t\"age\": " + String.valueOf(user.toParseAge(user))+" \n" +
+                "}";
     }
 
 
@@ -47,7 +52,7 @@ public class UserController {
     @GetMapping("/inn/{inn}")
     public String getBodyId(@PathVariable String inn,
                             HttpServletResponse response) {
-        myTimer(timer);
+        MyTimer.myTimer(timerMin, timerMax);
         response.addHeader("inn", inn);
         return String.format("Your INN - %s!", inn);
     }
@@ -57,28 +62,9 @@ public class UserController {
     public String getBody(@RequestParam(value =  "name", defaultValue = "Ivan") String name,
                           @RequestHeader(value =  "trace", defaultValue = "111111") String trace,
                           HttpServletResponse response) {
-        myTimer(timer);
+        MyTimer.myTimer(timerMin, timerMax);
         response.addHeader("trace", trace);
         return String.format("Your name - %s! Your registrynumber - %s", name, trace+trace);
-    }
-
-
-    // Самый простой ответ да на корень. любой метод.
-
-    @RequestMapping("/**")
-    public String getAny() {
-        myTimer(timer);
-
-        return ("");
-    }
-
-
-    private void myTimer(int timer) {
-        try {
-            Thread.sleep(timer);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 

@@ -15,7 +15,15 @@ management:
 server:
   port: 8089
 #port dlya servisa
-timer: 200
+timerUser:
+  min: 50
+  max: 100
+timerGreeting:
+  min: 100
+  max: 200
+timerKafka:
+  min: 200
+  max: 300
 #vremya zaderzhki
 logging:
   level:
