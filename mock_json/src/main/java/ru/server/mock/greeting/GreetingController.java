@@ -32,6 +32,8 @@ public class GreetingController {
    // Logger logger = LoggerFactory.getLogger(GreetingController.class);
    // private static final String templateName = "%s";
    // private static final String templateGreeting = "Your greeting - %s!";
+
+    //Считает количество запросов
     private final AtomicLong counter = new AtomicLong();
 
     @GetMapping("/greeting")
