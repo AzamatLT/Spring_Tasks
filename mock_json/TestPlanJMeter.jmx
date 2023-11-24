@@ -15,7 +15,7 @@
           </elementProp>
           <elementProp name="port_actuator" elementType="Argument">
             <stringProp name="Argument.name">port_actuator</stringProp>
-            <stringProp name="Argument.value">8088</stringProp>
+            <stringProp name="Argument.value">8090</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -599,7 +599,7 @@ Marina&#xd;
               </elementProp>
               <elementProp name="influxdbUrl" elementType="Argument">
                 <stringProp name="Argument.name">influxdbUrl</stringProp>
-                <stringProp name="Argument.value">http://localhost:8086/write?db=test</stringProp>
+                <stringProp name="Argument.value">http://localhost:8086/write?db=TEST_MOCK</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
               <elementProp name="application" elementType="Argument">
