@@ -38,7 +38,7 @@ public class MessageController {
         return "Message was sent successfully";
     }
 
-    // При получении POST отправляем весь полученный JSON в сообщение кафки, ???а headerTrace в key кафки
+    // При получении POST отправляем ВЕСЬ полученный JSON в сообщение кафки, ???а headerTrace в key кафки
     @PostMapping("/kafka")
     @ResponseBody
     public String publishMessagePost(@RequestBody String kafka_Message,

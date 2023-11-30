@@ -24,6 +24,9 @@ timerGreeting:
 timerKafka:
   min: 200
   max: 300
+timerBankCard:
+  min: 300
+  max: 400
 #vremya zaderzhki
 logging:
   level:

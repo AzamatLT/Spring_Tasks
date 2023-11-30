@@ -12,6 +12,9 @@ import ru.server.mock.myTimer.MyTimer;
 @Slf4j
 @RestController
 @RequestMapping("/api/v2")
+
+// В версии 2 должно быть реализовано всё то что есть в версии 1 но с xml
+
 public class UserControllerV2 {
 
     private final int timerMin;
