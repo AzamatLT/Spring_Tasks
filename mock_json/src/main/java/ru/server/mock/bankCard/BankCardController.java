@@ -10,7 +10,7 @@ import ru.server.mock.myTimer.MyTimer;
 import static ru.server.mock.bankCard.client.GetToken.getToken;
 import static ru.server.mock.bankCard.client.PostToken.postToken;
 
-// Сервер + Клиент для получения токена
+// Сервер + Клиент для получения токена от SpringBootGetToken
 
 @Slf4j
 @RestController
@@ -51,9 +51,4 @@ public class BankCardController {
         // Отправляем полученный JSON с токеном
         return token.toString() ;   //bankCard.toString();
     }
-
-
-
-
-
 }
