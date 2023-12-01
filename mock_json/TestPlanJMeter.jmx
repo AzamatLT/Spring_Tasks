@@ -233,7 +233,7 @@
           </HTTPSamplerProxy>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="UserController" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="UserController" enabled="false"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET INN path" enabled="false">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
@@ -556,7 +556,7 @@ Marina&#xd;
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="POSTToken" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="POSTToken" enabled="false"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST getToken" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
@@ -602,7 +602,7 @@ Marina&#xd;
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="BankCard" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="BankCard" enabled="true"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST BankCard" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
@@ -612,7 +612,7 @@ Marina&#xd;
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
 	&quot;name&quot;: &quot;Oleg&quot;,&#xd;
-	&quot;number&quot;: 11223${__Random(10,20)},&#xd;
+	&quot;number&quot;: 11223${__Random(5,20)},&#xd;
 	&quot;date&quot;: &quot;10.10.23&quot; &#xd;
 }&#xd;
 </stringProp>

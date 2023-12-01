@@ -1,7 +1,6 @@
-package ru.server.mock.bankCard.client;
+package ru.server.mock.bankCard;
 
 import org.springframework.web.reactive.function.client.WebClient;
-import ru.server.mock.users_json.User;
 
 public class Token {
     String token;

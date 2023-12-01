@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import ru.server.mock.bankCard.client.Token;
 import ru.server.mock.myTimer.MyTimer;
+
+import static ru.server.mock.bankCard.client.GetToken.getToken;
+import static ru.server.mock.bankCard.client.PostToken.postToken;
 
 // Сервер + Клиент для получения токена
 
@@ -34,19 +36,20 @@ public class BankCardController {
                                HttpServletResponse response) {
         MyTimer.myTimer(timerMin, timerMax);
         log.warn("Print BankCard Object " + bankCard);
-// Парсим JSON
-       // response.addHeader("token", token);
-     //   response.addHeader("Your name", bankCard.toParseName(bankCard));
-     //   response.addHeader("Your number", bankCard.toParseNumber(bankCard));
-     //   response.addHeader("Your date", String.valueOf(bankCard.toParseDate(bankCard)));
-      //  response.addHeader("Your bankCard", bankCard.toString()); //Передаём header сформированный в bankCard.toString() из request
-// Отправляем полученный JSON
-        String num = bankCard.toParseNumber();
-        System.out.println("bank card number = " + num);
-        Token token = new Token();
-        System.out.println("token = " + token);
 
-        return token.getToken(num) ;   //bankCard.toString();
+
+        //парсим номер карты
+        String num = bankCard.toParseNumber();
+        System.out.println("bank card number - " + num);
+        //запрашиваем токен передавая номер карты, готово два метода для запроса токена GET getToken и POSt postToken
+        String strToken = getToken(num);
+        System.out.println("Token - " + strToken);
+        //формирем response с токеном
+        Token token = new Token();
+        token.setToken(strToken);
+
+        // Отправляем полученный JSON с токеном
+        return token.toString() ;   //bankCard.toString();
     }
 
 
