@@ -1,4 +1,4 @@
-package com.javatechie.executor.api.config;
+package mock.spring.multithreading.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

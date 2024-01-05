@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServiceMock {
 
-   // Logger logger = LoggerFactory.getLogger(ServiceMock.class);
-
-
-
+    Logger logger = LoggerFactory.getLogger(ServiceMock.class);
 
 
     @Async
