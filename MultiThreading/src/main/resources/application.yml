@@ -1,0 +1,6 @@
+server:
+  port: 9191
+
+timer:
+  min: 50
+  max: 100
