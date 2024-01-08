@@ -1,0 +1,18 @@
+management:
+  endpoints:
+    web.exposure:
+      include: health,info,env,mappings,metrics,beans,prometheus
+#chto pokazivat
+  endpoint:
+    health:
+      show-details=always
+#health pokazivat v detalyah
+
+
+  server:
+    port: 7776
+#port dlya actuator
+server:
+  port: 7777
+#port dlya servisa
+
