@@ -28,7 +28,7 @@ public class GetController {
     public GetController(@Value("${timer.min}") int timerMin, @Value("${timer.max}") int timerMax) {
         this.timerMin = timerMin;
         this.timerMax = timerMax;
-        log.warn(" timerMin = " + timerMin + "  timerMax = " + timerMax);
+      //  log.warn(" timerMin = " + timerMin + "  timerMax = " + timerMax);
     }
 
 
@@ -43,7 +43,7 @@ public class GetController {
 
         MyTimer.myTimer(timerMin, timerMax);
 
-        log.warn("getname - " + name + ", " + "   trace - " + trace);
+       // log.warn("getname - " + name + ", " + "   trace - " + trace);
         response.addHeader("trace", trace);
         ServiceMock mockName = new ServiceMock();
         return "{\n" +

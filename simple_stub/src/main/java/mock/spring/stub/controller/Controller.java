@@ -22,17 +22,8 @@ public class Controller {
 
     @RequestMapping("/**")
     public String getAny() throws InterruptedException {
-        Thread.sleep(
-                (long) (Math.random() * (
-                                        Integer.parseInt(
-                                                docker_env_timer_max
-                                        ) - Integer.parseInt(
-                                                docker_env_timer_min
-                                        )
-                                ) + Integer.parseInt(
-                                        docker_env_timer_min
-                                ))
-        );
+        Thread.sleep((long) (Math.random() * (Integer.parseInt(docker_env_timer_max) - Integer.parseInt(docker_env_timer_min))
+                + Integer.parseInt(docker_env_timer_min)));
         System.out.println("timerMin - " + docker_env_timer_min + "; timerMax - " + docker_env_timer_max);
         return ("Code 200");
     }
