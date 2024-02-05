@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import static mock.stub.different_json.data.Json_1.json_1;
+import static mock.stub.different_json.data.Json_2.json_2;
+import static mock.stub.different_json.data.Json_3.json_3;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v1")
@@ -45,29 +49,20 @@ public class UserControllerV1 {
         time = (long) (Math.random() * ((3 + 1) - 1) + 1);
         System.out.println("Random JSON number - " + time);
 
+        time = 2; //удалить
+
         switch ((int) time) {
             case  (1):
-                responseJSON = "{\n" +
-                        "\t\"name\": \"" + user.toParseName(user)+"\",\n" +
-                        "\t\"city\": \"" + user.toParseLocation(user)+"\",\n" +
-                        "\t\"age\": " + String.valueOf(user.toParseAge(user))+" \n" +
-                        "\t\"trace\": " + trace+" \n" +
-                        "}";
+                responseJSON = String.format(json_1, user.toParseName(user), user.toParseLocation(user), String.valueOf(user.toParseAge(user)), trace);
+                System.out.println(responseJSON);
                 break;
             case (2):
-                responseJSON = "{\n" +
-                        "\t\"name\": \"" + user.toParseName(user)+"\",\n" +
-                        "\t\"city\": \"" + user.toParseLocation(user)+"\",\n" +
-                        "\t\"age\": " + String.valueOf(user.toParseAge(user))+" \n" +
-                        "\t\"inn\": " + trace + trace+" \n" +
-                        "}";
+                responseJSON = String.format(json_2, user.toParseName(user), user.toParseLocation(user), String.valueOf(user.toParseAge(user)), trace + "" + trace);
+                System.out.println(responseJSON);
                 break;
             case (3):
-                responseJSON = "{\n" +
-                        "\t\"name\": \"" + user.toParseName(user)+"\",\n" +
-                        "\t\"city\": \"" + user.toParseLocation(user)+"\",\n" +
-                        "\t\"age\": " + String.valueOf(user.toParseAge(user))+" \n" +
-                        "}";
+                responseJSON = String.format(json_3, user.toParseName(user), user.toParseLocation(user), String.valueOf(user.toParseAge(user)));
+                System.out.println(responseJSON);
                 break;
             default:
                 responseJSON = "{\n" +
