@@ -1,0 +1,20 @@
+server:
+port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/pg_ml
+    username: admin
+    password: "admin"
+
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include: health, shutdown, prometheus
+  endpoint:
+    shutdown:
+      enabled: true

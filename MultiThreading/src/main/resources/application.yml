@@ -1,6 +1,11 @@
 server:
-  port: 9191
+  port: 8080
 
 timer:
   min: 50
   max: 100
+
+management:
+  endpoints:
+    web.exposure:
+      include: health,info,env,mappings,metrics,beans,prometheus

@@ -46,6 +46,9 @@ public class GetController {
        // log.warn("getname - " + name + ", " + "   trace - " + trace);
         response.addHeader("trace", trace);
         ServiceMock mockName = new ServiceMock();
+
+        System.out.println("increment - " + counter.incrementAndGet());
+
         return "{\n" +
                 "\t\"increment\": \"" + counter.incrementAndGet()+"\",\n" +
                 "\t\"name\": \"" + mockName.saveUsers(name) +"\",\n" +

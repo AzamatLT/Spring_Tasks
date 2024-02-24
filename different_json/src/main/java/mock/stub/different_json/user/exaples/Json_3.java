@@ -1,4 +1,4 @@
-package mock.stub.different_json.data;
+package mock.stub.different_json.user.exaples;
 
 public class Json_3 {
 

@@ -1,4 +1,4 @@
-package mock.spring.multithreading.config;
+package mock.postgresql.multi_pg.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

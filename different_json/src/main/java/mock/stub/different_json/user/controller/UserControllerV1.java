@@ -1,15 +1,12 @@
-package mock.stub.different_json.controller;
+package mock.stub.different_json.user.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.common.protocol.types.Field;
-import org.springframework.beans.factory.annotation.Autowired;
+import mock.stub.different_json.user.exaples.Json_1;
+import mock.stub.different_json.user.exaples.Json_2;
+import mock.stub.different_json.user.exaples.Json_3;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-
-import static mock.stub.different_json.data.Json_1.json_1;
-import static mock.stub.different_json.data.Json_2.json_2;
-import static mock.stub.different_json.data.Json_3.json_3;
 
 @Slf4j
 @RestController
@@ -25,7 +22,8 @@ public class UserControllerV1 {
     private long time;
     private String responseJSON;
 
-//  Получаем JSON, отправляем рандомный JSON
+//  Получаем JSON, отправляем рандомный JSON подставляя свои значения
+
 
     @PostMapping("/inn")
     @ResponseBody
@@ -49,19 +47,19 @@ public class UserControllerV1 {
         time = (long) (Math.random() * ((3 + 1) - 1) + 1);
         System.out.println("Random JSON number - " + time);
 
-        time = 2; //удалить
+        //time = 2; //удалить
 
         switch ((int) time) {
             case  (1):
-                responseJSON = String.format(json_1, user.toParseName(user), user.toParseLocation(user), String.valueOf(user.toParseAge(user)), trace);
+                responseJSON = String.format(Json_1.json_1, user.toParseName(user), user.toParseLocation(user), String.valueOf(user.toParseAge(user)), trace);
                 System.out.println(responseJSON);
                 break;
             case (2):
-                responseJSON = String.format(json_2, user.toParseName(user), user.toParseLocation(user), String.valueOf(user.toParseAge(user)), trace + "" + trace);
+                responseJSON = String.format(Json_2.json_2, user.toParseName(user), user.toParseLocation(user), String.valueOf(user.toParseAge(user)), trace + "" + trace);
                 System.out.println(responseJSON);
                 break;
             case (3):
-                responseJSON = String.format(json_3, user.toParseName(user), user.toParseLocation(user), String.valueOf(user.toParseAge(user)));
+                responseJSON = String.format(Json_3.json_3, user.toParseName(user), user.toParseLocation(user), String.valueOf(user.toParseAge(user)));
                 System.out.println(responseJSON);
                 break;
             default:

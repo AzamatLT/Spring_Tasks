@@ -1,4 +1,4 @@
-package mock.stub.different_json.controller;
+package mock.stub.different_json.user.controller;
 
 public class User {
 
