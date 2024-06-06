@@ -2,11 +2,13 @@ package mock.stub.different_json.user.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import mock.stub.different_json.user.exaples.Json_1;
-import mock.stub.different_json.user.exaples.Json_2;
-import mock.stub.different_json.user.exaples.Json_3;
+import mock.stub.different_json.user.exaples.differentJson.Json_1;
+import mock.stub.different_json.user.exaples.differentJson.Json_2;
+import mock.stub.different_json.user.exaples.differentJson.Json_3;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import static mock.stub.different_json.user.exaples.differentCountBlockJson.Json.jsonDifferentCountBlock;
 
 @Slf4j
 @RestController
@@ -78,6 +80,7 @@ public class UserControllerV1 {
 
     @GetMapping("/inn/{inn}")
     public String getBodyId(@PathVariable String inn,
+                            @RequestHeader(value =  "trace", defaultValue = "111111") String trace,
                             HttpServletResponse response) throws InterruptedException {
 
         time = (long) (Math.random() * (Integer.parseInt(timerMax) - Integer.parseInt(timerMin)) + Integer.parseInt(timerMin));
@@ -85,12 +88,13 @@ public class UserControllerV1 {
         Thread.sleep(time);
 
         response.addHeader("inn", inn);
-        return String.format("{\n" +
-                "\t\"name\": \"" + "IVAN"+"\",\n" +
-                "\t\"city\": \"" + "Sochi"+"\",\n" +
-                "\t\"age\": " + 23 +" \n" +
-                "\t\"inn\": " + inn +" \n" +
-                "}");
+        String jsonTrace =
+                """
+                {
+                    "message": "Возвращает этот блок рандомное кол-во раз",
+                    "trace": "%s"
+                    }""".formatted(trace);
+        return jsonDifferentCountBlock(inn, trace, jsonTrace);
     }
 
     // GET с параметром и header
